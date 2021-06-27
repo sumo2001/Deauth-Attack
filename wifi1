@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+echo "Hello, This is I am iamcybermight"
+echo "1.Monitor Mode
+2.Managed Mode(Default)"
+echo -n "Make your Choice:"
+read VAR
+if [ $VAR -eq 1 ]
+then
+    I=${1?Error: no name given} 
+    ifconfig $I  down
+    iwconfig $I  mode monitor 
+    ifconfig $I  up
+    echo "Configured $I in Monitor mode Successfuly"
+    sleep 0.5
+    airmon-ng check kill
+    echo "Succesfully Killed Processes"
+    echo "Displaying Available Clients"
+    echo "Press Ctrl + C to exit"
+    sleep 2
+    airodump-ng $I
+elif [ $VAR -eq 2 ]
+then
+    echo "Reseting the Interface"
+    service networking restart
+    service network-manager restart
+    echo "Done!"
+    sleep 0.8
+    
+else
+    echo "Please Select Properly"
+fi

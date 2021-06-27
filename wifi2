@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+echo -n "Enter the Interface:"
+read WW
+echo -n "Enter Routers MAC Id [BSSID]:"
+read VAR
+echo -n "Enter Channel of the Router:"
+read C
+airodump-ng $WW --bssid $VAR --channel $C
